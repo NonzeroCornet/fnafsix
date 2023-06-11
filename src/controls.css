@@ -1,0 +1,30 @@
+body,
+body::backdrop {
+  background: url(./assets/images/bg.jpg) no-repeat center, black;
+  background-size: contain;
+  height: calc(100vh - 16px);
+}
+
+/* Project Specific CSS */
+
+h1 {
+  position: absolute;
+  left: 50vw;
+  bottom: -15px;
+  transform: translateX(-50%);
+  color: magenta;
+  text-shadow: 2px 0 0 black, 0 2px 0 black, -2px 0 0 black, 0 -2px 0 black;
+}
+
+div {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: black;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  color: green;
+  font-family: Arial;
+  text-align: center;
+}

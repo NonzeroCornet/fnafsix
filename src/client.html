@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="client.css" />
+  </head>
+  <body>
+    <div class="client" style="display: block">
+      <!--
+        Project Specific HTML
+      -->
+      <div class="center">
+        <center>
+          <img
+            src="/assets/images/Tasks/Tasks.png"
+            class="btn"
+            style="background: #91bdd7"
+          />
+          <img src="/assets/images/Tasks/Motion.png" class="btn" />
+          <img src="/assets/images/Tasks/Audio.png" class="btn" />
+          <img src="/assets/images/Tasks/Vent.png" class="btn" />
+          <div class="screen" id="Tasks" style="display: block">
+            <img
+              src="/assets/images/Tasks/OrderPlates.png"
+              class="task btn"
+              style="top: 200px"
+            />
+            <img
+              src="/assets/images/Loading/loading.gif"
+              class="task loading"
+              style="top: 204px"
+            />
+            <img
+              src="/assets/images/Tasks/OrderNapkins.png"
+              class="task btn"
+              style="top: 240px"
+            />
+            <img
+              src="/assets/images/Loading/loading.gif"
+              class="task loading"
+              style="top: 244px"
+            />
+            <img
+              src="/assets/images/Tasks/OrderUtensils.png"
+              class="task btn"
+              style="top: 280px"
+            />
+            <img
+              src="/assets/images/Loading/loading.gif"
+              class="task loading"
+              style="top: 284px"
+            />
+            <img
+              src="/assets/images/Tasks/OrderPizzaKits.png"
+              class="task btn"
+              style="top: 320px"
+            />
+            <img
+              src="/assets/images/Loading/loading.gif"
+              class="task loading"
+              style="top: 324px"
+            />
+          </div>
+        </center>
+      </div>
+      <!---->
+    </div>
+    <input
+      type="text"
+      placeholder='Enter The IP Address Displayed On Control Screen, Then Press "Enter"'
+      style="width: 430px"
+    />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  </body>
+</html>
