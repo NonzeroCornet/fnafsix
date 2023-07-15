@@ -18,10 +18,23 @@
           src="/assets/images/Tasks/Tasks.png"
           class="btn"
           style="background: #91bdd7"
+          onclick="switchMode(this, 'subScreenSelection')"
         />
-        <img src="/assets/images/Tasks/Motion.png" class="btn" />
-        <img src="/assets/images/Tasks/Audio.png" class="btn" />
-        <img src="/assets/images/Tasks/Vent.png" class="btn" />
+        <img
+          src="/assets/images/Tasks/Motion.png"
+          class="btn"
+          onclick="switchMode(this, 'motion')"
+        />
+        <img
+          src="/assets/images/Tasks/Audio.png"
+          class="btn"
+          onclick="switchMode(this, 'audio')"
+        />
+        <img
+          src="/assets/images/Tasks/Vent.png"
+          class="btn"
+          onclick="switchMode(this, 'vent')"
+        />
         <div
           class="screen"
           id="subScreenSelection"
@@ -70,7 +83,10 @@
             src="/assets/images/Tasks/LogOff.png"
             class="task btn"
             style="top: 360px; display: none"
+            id="logOffBtn"
+            onclick="logOff()"
           />
+          <p style="left: 380px">$0</p>
         </div>
         <div class="screen" id="tasks" style="display: none">
           <img
@@ -144,6 +160,7 @@
             style="top: 420px"
             onclick="switchScreen(this, 'subScreenSelection')"
           />
+          <p>$0</p>
         </div>
         <div class="screen" id="advertising" style="display: none">
           <img
@@ -171,7 +188,7 @@
           <img
             src="/assets/images/Tasks/PrintMenus.png"
             class="task btn"
-            style="top: 140px"
+            style="top: 140px; left: 52px"
             onclick="runAdvertising(this, 7)"
           />
           <img
@@ -195,6 +212,7 @@
             style="top: 420px"
             onclick="switchScreen(this, 'subScreenSelection')"
           />
+          <p>$0</p>
         </div>
         <div class="screen" id="maintenance" style="display: none">
           <img
@@ -246,6 +264,7 @@
             style="top: 420px"
             onclick="switchScreen(this, 'subScreenSelection')"
           />
+          <p>$0</p>
         </div>
         <div class="screen" id="equipment" style="display: none">
           <img
@@ -297,7 +316,28 @@
             style="top: 420px"
             onclick="switchScreen(this, 'subScreenSelection')"
           />
+          <p>$0</p>
         </div>
+        <div class="screen" id="motion" style="display: none">
+          <img src="assets/images/Map.png" style="margin-top: 50px" />
+          <div
+            style="
+              background: #abadb8;
+              width: 17px;
+              height: 17px;
+              position: absolute;
+              left: 297px;
+              top: 350px;
+              animation: blink-animation 0.75s steps(5, start) infinite;
+            "
+          ></div>
+          <img
+            src="/assets/images/Tasks/ActivateMotionScanning.png"
+            style="position: absolute; top: 420px; left: 0px;"
+          />
+        </div>
+        <div class="screen" id="audio" style="display: none">Audio</div>
+        <div class="screen" id="vent" style="display: none">Vent</div>
       </div>
       <!---->
     </div>

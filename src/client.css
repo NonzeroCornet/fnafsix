@@ -1,3 +1,8 @@
+@font-face {
+  font-family: FNAF6NUMBERS;
+  src: url("/assets/fonts/Fnaf6numbers-Regular.ttf");
+}
+
 .client {
   position: absolute;
   top: 0px;
@@ -7,6 +12,7 @@
   display: none;
   background: #091324;
   color: white;
+  font-family: FNAF6NUMBERS;
 }
 
 /*Project Specific CSS Styles*/
@@ -50,4 +56,11 @@
   to {
     visibility: hidden;
   }
+}
+
+p {
+  position: absolute;
+  top: 400px;
+  left: 490px;
+  font-size: 60px;
 }
