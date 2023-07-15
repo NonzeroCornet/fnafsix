@@ -42,6 +42,7 @@
             src="/assets/images/Tasks/Advertising.png"
             class="task btn"
             style="top: 240px"
+            onclick="switchScreen(this, 'advertising')"
           />
           <img
             src="/assets/images/Tasks/Warning.png"
@@ -52,6 +53,7 @@
             src="/assets/images/Tasks/Maintenance.png"
             class="task btn"
             style="top: 280px"
+            onclick="switchScreen(this, 'maintenance')"
           />
           <img
             src="/assets/images/Tasks/Warning.png"
@@ -62,6 +64,12 @@
             src="/assets/images/Tasks/Equipment.png"
             class="task btn"
             style="top: 320px"
+            onclick="switchScreen(this, 'equipment')"
+          />
+          <img
+            src="/assets/images/Tasks/LogOff.png"
+            class="task btn"
+            style="top: 360px; display: none"
           />
         </div>
         <div class="screen" id="tasks" style="display: none">
@@ -129,6 +137,159 @@
               opacity: 0;
             "
             id="pleasewait1"
+          />
+          <img
+            src="/assets/images/Tasks/Back.png"
+            class="task btn"
+            style="top: 420px"
+            onclick="switchScreen(this, 'subScreenSelection')"
+          />
+        </div>
+        <div class="screen" id="advertising" style="display: none">
+          <img
+            src="/assets/images/Tasks/PrintFlyers.png"
+            class="task btn"
+            style="top: 60px"
+            onclick="runAdvertising(this, 5)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 64px"
+          />
+          <img
+            src="/assets/images/Tasks/PrintPoster.png"
+            class="task btn"
+            style="top: 100px"
+            onclick="runAdvertising(this, 6)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 104px"
+          />
+          <img
+            src="/assets/images/Tasks/PrintMenus.png"
+            class="task btn"
+            style="top: 140px"
+            onclick="runAdvertising(this, 7)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 144px"
+          />
+          <img
+            src="/assets/images/Tasks/PleaseWait.png"
+            class="task"
+            style="
+              top: 276px;
+              animation: blink-animation 0.5s steps(5, start) infinite;
+              opacity: 0;
+            "
+            id="pleasewait2"
+          />
+          <img
+            src="/assets/images/Tasks/Back.png"
+            class="task btn"
+            style="top: 420px"
+            onclick="switchScreen(this, 'subScreenSelection')"
+          />
+        </div>
+        <div class="screen" id="maintenance" style="display: none">
+          <img
+            src="/assets/images/Tasks/UnclogToilets.png"
+            class="task btn"
+            style="top: 60px"
+            onclick="runMaintenance(this, 8)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 64px"
+          />
+          <img
+            src="/assets/images/Tasks/CleanOvens.png"
+            class="task btn"
+            style="top: 100px"
+            onclick="runMaintenance(this, 9)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 104px"
+          />
+          <img
+            src="/assets/images/Tasks/ReplaceBulbs.png"
+            class="task btn"
+            style="top: 140px"
+            onclick="runMaintenance(this, 10)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 144px"
+          />
+          <img
+            src="/assets/images/Tasks/PleaseWait.png"
+            class="task"
+            style="
+              top: 276px;
+              animation: blink-animation 0.5s steps(5, start) infinite;
+              opacity: 0;
+            "
+            id="pleasewait3"
+          />
+          <img
+            src="/assets/images/Tasks/Back.png"
+            class="task btn"
+            style="top: 420px"
+            onclick="switchScreen(this, 'subScreenSelection')"
+          />
+        </div>
+        <div class="screen" id="equipment" style="display: none">
+          <img
+            src="/assets/images/Tasks/X2Printer.png"
+            class="task btn"
+            style="top: 60px"
+            onclick="runEquipment(this, 11)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 64px"
+          />
+          <img
+            src="/assets/images/Tasks/HighSpeedUplink.png"
+            class="task btn"
+            style="top: 100px"
+            onclick="runEquipment(this, 12)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 104px"
+          />
+          <img
+            src="/assets/images/Tasks/HireHandyman.png"
+            class="task btn"
+            style="top: 140px"
+            onclick="runEquipment(this, 13)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 144px"
+          />
+          <img
+            src="/assets/images/Tasks/PleaseWait.png"
+            class="task"
+            style="
+              top: 276px;
+              animation: blink-animation 0.5s steps(5, start) infinite;
+              opacity: 0;
+            "
+            id="pleasewait4"
           />
           <img
             src="/assets/images/Tasks/Back.png"

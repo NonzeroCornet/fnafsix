@@ -5,6 +5,10 @@ const $ = (id) => {
   return document.getElementById(id);
 };
 
+var printerUpgrade = false;
+var uplinkUpgrade = false;
+var handymanUpgrade = false;
+
 document.addEventListener("keydown", (event) => {
   if (event.key == "Escape") {
     event.preventDefault();
@@ -43,14 +47,80 @@ function runTask(task, number) {
     $("pleasewait1").style.opacity = "1";
     task.style.cursor = "default";
     taskRunning = true;
+    document.body.style.pointerEvents = "none";
     setTimeout(() => {
       task.remove();
       document.querySelectorAll(".loading")[number].style.display = "none";
       $("pleasewait1").style.opacity = "0";
       taskRunning = false;
+      document.body.style.pointerEvents = "unset";
       if (document.querySelector("#tasks").children.length == 7) {
         document.querySelectorAll(".warning")[0].style.display = "none";
       }
-    }, 1000);
+    }, 8350);
+  }
+}
+
+function runAdvertising(task, number) {
+  if (!taskRunning) {
+    document.querySelectorAll(".loading")[number].style.display = "block";
+    $("pleasewait2").style.opacity = "1";
+    task.style.cursor = "default";
+    taskRunning = true;
+    document.body.style.pointerEvents = "none";
+    setTimeout(() => {
+      task.remove();
+      document.querySelectorAll(".loading")[number].style.display = "none";
+      $("pleasewait2").style.opacity = "0";
+      taskRunning = false;
+      document.body.style.pointerEvents = "unset";
+      if (document.querySelector("#advertising").children.length == 5) {
+        document.querySelectorAll(".warning")[1].style.display = "none";
+      }
+    }, 16680);
+  }
+}
+
+function runMaintenance(task, number) {
+  if (!taskRunning) {
+    document.querySelectorAll(".loading")[number].style.display = "block";
+    $("pleasewait3").style.opacity = "1";
+    task.style.cursor = "default";
+    taskRunning = true;
+    document.body.style.pointerEvents = "none";
+    setTimeout(() => {
+      task.remove();
+      document.querySelectorAll(".loading")[number].style.display = "none";
+      $("pleasewait3").style.opacity = "0";
+      taskRunning = false;
+      document.body.style.pointerEvents = "unset";
+      if (document.querySelector("#maintenance").children.length == 5) {
+        document.querySelectorAll(".warning")[2].style.display = "none";
+      }
+    }, 12520);
+  }
+}
+
+function runEquipment(task, number) {
+  if (!taskRunning) {
+    document.querySelectorAll(".loading")[number].style.display = "block";
+    $("pleasewait4").style.opacity = "1";
+    task.style.cursor = "default";
+    taskRunning = true;
+    document.body.style.pointerEvents = "none";
+    setTimeout(() => {
+      task.remove();
+      document.querySelectorAll(".loading")[number].style.display = "none";
+      $("pleasewait4").style.opacity = "0";
+      taskRunning = false;
+      document.body.style.pointerEvents = "unset";
+      if(number == 11) {
+        printerUpgrade = true;
+      } else if(number == 12) {
+        uplinkUpgrade = true;
+      } else {
+        handymanUpgrade = true;
+      }
+    }, 100);
   }
 }
