@@ -16,8 +16,8 @@
 }
 
 .center {
-  margin-left: 50%;
-  transform: translateX(-50%);
+  position: absolute;
+  left: calc(50% - 315px);
   padding: 10px;
 }
 
@@ -30,4 +30,24 @@
   position: absolute;
   left: 310px;
   z-index: 1;
+  display: none;
+}
+
+.screen {
+  display: block;
+  position: absolute;
+  left: 15px;
+}
+
+.warning {
+  position: absolute;
+  left: 358px;
+  filter: brightness(0.7);
+  width: 42px;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }

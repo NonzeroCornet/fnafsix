@@ -9,6 +9,9 @@ var io = require("socket.io")(http, {
 });
 exApp.use(cors());
 exApp.use(express.static(__dirname + "/"));
+exApp.get("/", (req, res) => {
+  res.send("<script>window.location.href = '/controls.html'</script>");
+});
 var mainWindow;
 io.on("connection", (socket) => {
   // Project Specific Connections

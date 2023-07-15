@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="client.css" />
+    <link
+      rel="icon"
+      href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+    />
   </head>
   <body>
     <div class="client" style="display: block">
@@ -10,58 +14,129 @@
         Project Specific HTML
       -->
       <div class="center">
-        <center>
+        <img
+          src="/assets/images/Tasks/Tasks.png"
+          class="btn"
+          style="background: #91bdd7"
+        />
+        <img src="/assets/images/Tasks/Motion.png" class="btn" />
+        <img src="/assets/images/Tasks/Audio.png" class="btn" />
+        <img src="/assets/images/Tasks/Vent.png" class="btn" />
+        <div
+          class="screen"
+          id="subScreenSelection"
+          style="display: block; left: 125px"
+        >
           <img
-            src="/assets/images/Tasks/Tasks.png"
-            class="btn"
-            style="background: #91bdd7"
+            src="/assets/images/Tasks/OrderSupplies.png"
+            class="task btn"
+            style="top: 200px"
+            onclick="switchScreen(this, 'tasks')"
           />
-          <img src="/assets/images/Tasks/Motion.png" class="btn" />
-          <img src="/assets/images/Tasks/Audio.png" class="btn" />
-          <img src="/assets/images/Tasks/Vent.png" class="btn" />
-          <div class="screen" id="Tasks" style="display: block">
-            <img
-              src="/assets/images/Tasks/OrderPlates.png"
-              class="task btn"
-              style="top: 200px"
-            />
-            <img
-              src="/assets/images/Loading/loading.gif"
-              class="task loading"
-              style="top: 204px"
-            />
-            <img
-              src="/assets/images/Tasks/OrderNapkins.png"
-              class="task btn"
-              style="top: 240px"
-            />
-            <img
-              src="/assets/images/Loading/loading.gif"
-              class="task loading"
-              style="top: 244px"
-            />
-            <img
-              src="/assets/images/Tasks/OrderUtensils.png"
-              class="task btn"
-              style="top: 280px"
-            />
-            <img
-              src="/assets/images/Loading/loading.gif"
-              class="task loading"
-              style="top: 284px"
-            />
-            <img
-              src="/assets/images/Tasks/OrderPizzaKits.png"
-              class="task btn"
-              style="top: 320px"
-            />
-            <img
-              src="/assets/images/Loading/loading.gif"
-              class="task loading"
-              style="top: 324px"
-            />
-          </div>
-        </center>
+          <img
+            src="/assets/images/Tasks/Warning.png"
+            class="warning"
+            style="top: 199px"
+          />
+          <img
+            src="/assets/images/Tasks/Advertising.png"
+            class="task btn"
+            style="top: 240px"
+          />
+          <img
+            src="/assets/images/Tasks/Warning.png"
+            class="warning"
+            style="top: 238px"
+          />
+          <img
+            src="/assets/images/Tasks/Maintenance.png"
+            class="task btn"
+            style="top: 280px"
+          />
+          <img
+            src="/assets/images/Tasks/Warning.png"
+            class="warning"
+            style="top: 280px"
+          />
+          <img
+            src="/assets/images/Tasks/Equipment.png"
+            class="task btn"
+            style="top: 320px"
+          />
+        </div>
+        <div class="screen" id="tasks" style="display: none">
+          <img
+            src="/assets/images/Tasks/OrderCups.png"
+            class="task btn"
+            style="top: 60px"
+            onclick="runTask(this, 0)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 64px"
+          />
+          <img
+            src="/assets/images/Tasks/OrderPlates.png"
+            class="task btn"
+            style="top: 100px"
+            onclick="runTask(this, 1)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 104px"
+          />
+          <img
+            src="/assets/images/Tasks/OrderNapkins.png"
+            class="task btn"
+            style="top: 140px"
+            onclick="runTask(this, 2)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 144px"
+          />
+          <img
+            src="/assets/images/Tasks/OrderUtensils.png"
+            class="task btn"
+            style="top: 180px"
+            onclick="runTask(this, 3)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 184px"
+          />
+          <img
+            src="/assets/images/Tasks/OrderPizzaKits.png"
+            class="task btn"
+            style="top: 220px"
+            onclick="runTask(this, 4)"
+          />
+          <img
+            src="/assets/images/Loading/loading.gif"
+            class="task loading"
+            style="top: 224px"
+          />
+          <img
+            src="/assets/images/Tasks/PleaseWait.png"
+            class="task"
+            style="
+              top: 276px;
+              animation: blink-animation 0.5s steps(5, start) infinite;
+              opacity: 0;
+            "
+            id="pleasewait1"
+          />
+          <img
+            src="/assets/images/Tasks/Back.png"
+            class="task btn"
+            style="top: 420px"
+            onclick="switchScreen(this, 'subScreenSelection')"
+          />
+        </div>
       </div>
       <!---->
     </div>
