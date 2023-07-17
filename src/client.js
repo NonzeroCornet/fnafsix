@@ -50,6 +50,8 @@ var motionPositions = [
   { top: "338px", left: "566.5px" },
 ];
 
+var canSkip = true;
+
 function Start() {
   socket.on("setMoneyC", (amount) => {
     money = amount;
@@ -69,8 +71,19 @@ function Start() {
   });
 
   socket.on("advertC", () => {
-    $("advertImage").style.display = "block";
+    $("advertImage").src = `/assets/images/Advert${Math.round(
+      Math.random() * 2
+    )}.png`;
+    $("advertImageDiv").style.display = "block";
+    canSkip = false;
+    setTimeout(() => (canSkip = true), 1000);
   });
+}
+
+function skipAd() {
+  if (canSkip) {
+    $("advertImageDiv").style.display = "none";
+  }
 }
 
 function switchScreen(screen1child, screen2ID) {
@@ -91,7 +104,7 @@ function switchMode(btn, mode) {
 }
 
 var taskRunning = false;
-let taskSFX = new Audio("/assets/audio/orderitem.mp3");
+let taskSFX = new Audio("/assets/Audio/orderitem.mp3");
 taskSFX.loop = true;
 function runTask(task, number) {
   if (!taskRunning) {
@@ -125,7 +138,7 @@ function runTask(task, number) {
 
 function runAdvertising(task, number) {
   if (!taskRunning) {
-    let printingSFX = new Audio("/assets/audio/printing.mp3");
+    let printingSFX = new Audio("/assets/Audio/printing.mp3");
     printingSFX.play();
     document.querySelectorAll(".loading")[number].style.display = "block";
     $("pleasewait2").style.opacity = "1";
