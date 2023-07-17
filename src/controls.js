@@ -20,3 +20,15 @@ socket.on("logControls", (message) => {
   document.querySelector("div").style.display = "block";
   document.querySelector("div").innerHTML += `<br><h2>${message}</h2>`;
 });
+
+function moneyUpdate() {
+  socket.emit("moneyUpdateR", document.querySelector("#moneyBox").value);
+}
+
+function ping(num) {
+  socket.emit("motionBloopR", num);
+}
+
+function triggerAd() {
+  socket.emit("advertR");
+}

@@ -3,14 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="controls.css" />
-    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" />
+    <link
+      rel="icon"
+      href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+    />
   </head>
   <body>
     <h1 id="ip">Loading...</h1>
     <!--
       Project Specific HTML
     -->
-    <div></div>
+    <div style="overflow-x: hidden">
+      <div
+        style="
+          position: fixed;
+          top: 0px;
+          left: 10px;
+          width: 50%;
+          height: 100%;
+          background: transparent;
+          display: block;
+          text-align: left;
+        "
+      >
+        <button style="margin-top: 50px" onclick="ping(0)">Room 1 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(1)">Room 2 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(2)">Room 3 Ping</button
+        ><br /><button style="margin-top: 50px" onclick="ping(3)">
+          Room 4 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(4)">Room 5 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(5)">Room 6 Ping</button
+        ><br /><button style="margin-top: 50px" onclick="ping(6)">
+          Room 7 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(7)">Room 8 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(8)">Room 9 Ping</button
+        ><br /><button style="margin-top: 50px" onclick="ping(9)">
+          Room 10 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(10)">
+          Room 11 Ping</button
+        ><button style="margin-top: 50px" onclick="ping(11)">
+          Room 12 Ping</button
+        ><br /><button
+          style="margin-top: 50px; margin-left: 100px"
+          onclick="ping(12)"
+        >
+          Room 13 Ping</button
+        ><br />
+        <input
+          type="number"
+          style="margin-top: 50px; width: 300px; text-align: center"
+          id="moneyBox"
+        /><br />
+        <button style="margin-top: 50px; width: 300px" onclick="moneyUpdate()">
+          Update Money</button
+        ><br />
+        <button style="margin-top: 50px; width: 300px" onclick="triggerAd()">
+          Troll em good
+        </button>
+      </div>
+    </div>
     <!---->
     <script src="/socket.io/socket.io.js"></script>
     <script src="controls.js"></script>

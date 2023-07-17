@@ -26,5 +26,23 @@ div {
   display: none;
   color: green;
   font-family: Arial;
-  text-align: center;
+  text-align: right;
+}
+
+h2 {
+  margin-right: 50px;
+}
+
+button {
+  width: 100px;
+  background: cyan;
+  color: magenta;
+}
+
+input {
+  background: lime;
+}
+
+span {
+  color: #a357ab;
 }
