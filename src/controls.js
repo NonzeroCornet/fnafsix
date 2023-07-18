@@ -6,7 +6,7 @@ document.getElementById("ip").innerHTML = new URL(
 
 document.addEventListener("keydown", (event) => {
   if (event.key == "Enter") {
-    document.location = "client.html";
+    document.location = "clientparent.html";
   } else if (event.key == "f") {
     document.body.requestFullscreen();
   } else if (event.key == "Escape") {
@@ -31,4 +31,12 @@ function ping(num) {
 
 function triggerAd() {
   socket.emit("advertR");
+}
+
+function grant(num) {
+  socket.emit("grantR", num);
+}
+
+function reload() {
+  socket.emit("reloadR");
 }

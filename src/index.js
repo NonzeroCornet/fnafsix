@@ -48,6 +48,14 @@ io.on("connection", (socket) => {
   socket.on("advertR", () => {
     io.sockets.emit("advertC");
   });
+
+  socket.on("grantR", (num) => {
+    io.sockets.emit("grantC", num);
+  });
+
+  socket.on("reloadR", () => {
+    io.sockets.emit("reloadC");
+  });
 });
 http.listen(8080);
 const createWindow = () => {

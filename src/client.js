@@ -12,6 +12,8 @@ var handymanUpgrade = false;
 var money = 0;
 
 var bloopity = new Audio("/assets/Audio/bing5.wav");
+var monitorNoise = new Audio("assets/audio/computer2.wav");
+monitorNoise.loop = true;
 
 document.addEventListener("keydown", (event) => {
   if (event.key == "Escape") {
@@ -34,6 +36,14 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+if (window.location.href.split("?").length > 1) {
+  socket = io("http://" + window.location.href.split("?")[1] + ":8080");
+  connected = true;
+  document.body.requestFullscreen();
+  document.querySelector(".client").style.display = "block";
+  Start();
+}
+
 var motionPositions = [
   { top: "60px", left: "7px" },
   { top: "60px", left: "145px" },
@@ -51,8 +61,10 @@ var motionPositions = [
 ];
 
 var canSkip = true;
+var adAudio = new Audio("/assets/audio/ad.mp3");
 
 function Start() {
+  monitorNoise.play();
   socket.on("setMoneyC", (amount) => {
     money = amount;
     document.querySelectorAll("p").forEach((x) => {
@@ -72,16 +84,39 @@ function Start() {
 
   socket.on("advertC", () => {
     $("advertImage").src = `/assets/images/Advert${Math.round(
-      Math.random() * 2
+      Math.random() * 3
     )}.png`;
     $("advertImageDiv").style.display = "block";
+    adAudio.currentTime = 0;
+    adAudio.play();
     canSkip = false;
-    setTimeout(() => (canSkip = true), 1000);
+    $("skipBtn").style.cursor = "default";
+    setTimeout(() => {
+      canSkip = true;
+      $("skipBtn").style.cursor = "pointer";
+    }, 2000);
+  });
+
+  socket.on("grantC", (num) => {
+    if (num == 0) {
+      uplinkUpgrade = true;
+    } else if (num == 1) {
+      printerUpgrade = true;
+    } else {
+      handymanUpgrade = true;
+    }
+    $("eq" + num).remove();
+  });
+
+  socket.on("reloadC", () => {
+    window.location.href =
+      "client.html?" + document.querySelector("input").value;
   });
 }
 
 function skipAd() {
   if (canSkip) {
+    adAudio.pause();
     $("advertImageDiv").style.display = "none";
   }
 }
@@ -108,62 +143,74 @@ let taskSFX = new Audio("/assets/Audio/orderitem.mp3");
 taskSFX.loop = true;
 function runTask(task, number) {
   if (!taskRunning) {
-    taskSFX.play();
+    if (!uplinkUpgrade) {
+      taskSFX.play();
+    }
     document.querySelectorAll(".loading")[number].style.display = "block";
     $("pleasewait1").style.opacity = "1";
     task.style.cursor = "default";
     taskRunning = true;
     document.body.style.pointerEvents = "none";
-    setTimeout(() => {
-      taskSFX.pause();
-      task.remove();
-      document.querySelectorAll(".loading")[number].style.display = "none";
-      $("pleasewait1").style.opacity = "0";
-      taskRunning = false;
-      document.body.style.pointerEvents = "unset";
-      if (document.querySelector("#tasks").children.length == 8) {
-        document.querySelectorAll(".warning")[0].style.display = "none";
-        socket.emit("log", "Finished ordering supplies!!!");
-        if (
-          document.querySelectorAll(".warning")[0].style.display == "none" &&
-          document.querySelectorAll(".warning")[1].style.display == "none" &&
-          document.querySelectorAll(".warning")[2].style.display == "none"
-        ) {
-          $("logOffBtn").style.display = "block";
+    setTimeout(
+      () => {
+        taskSFX.pause();
+        task.remove();
+        document.querySelectorAll(".loading")[number].style.display = "none";
+        $("pleasewait1").style.opacity = "0";
+        taskRunning = false;
+        document.body.style.pointerEvents = "unset";
+        if (document.querySelector("#tasks").children.length == 8) {
+          document.querySelectorAll(".warning")[0].style.display = "none";
+          socket.emit("log", "Finished ordering supplies!!!");
+          if (
+            document.querySelectorAll(".warning")[0].style.display == "none" &&
+            document.querySelectorAll(".warning")[1].style.display == "none" &&
+            document.querySelectorAll(".warning")[2].style.display == "none"
+          ) {
+            $("logOffBtn").style.display = "block";
+          }
         }
-      }
-    }, 8350);
+      },
+      uplinkUpgrade ? 7000 : 8350
+    );
   }
 }
 
 function runAdvertising(task, number) {
   if (!taskRunning) {
-    let printingSFX = new Audio("/assets/Audio/printing.mp3");
+    let printingSFX = new Audio(
+      printerUpgrade
+        ? "/assets/Audio/laserprinter3.mp3"
+        : "/assets/Audio/printing.mp3"
+    );
     printingSFX.play();
     document.querySelectorAll(".loading")[number].style.display = "block";
     $("pleasewait2").style.opacity = "1";
     task.style.cursor = "default";
     taskRunning = true;
     document.body.style.pointerEvents = "none";
-    setTimeout(() => {
-      printingSFX.pause();
-      task.remove();
-      document.querySelectorAll(".loading")[number].style.display = "none";
-      $("pleasewait2").style.opacity = "0";
-      taskRunning = false;
-      document.body.style.pointerEvents = "unset";
-      if (document.querySelector("#advertising").children.length == 6) {
-        document.querySelectorAll(".warning")[1].style.display = "none";
-        socket.emit("log", "Finished printing stuff!!!");
-        if (
-          document.querySelectorAll(".warning")[0].style.display == "none" &&
-          document.querySelectorAll(".warning")[1].style.display == "none" &&
-          document.querySelectorAll(".warning")[2].style.display == "none"
-        ) {
-          $("logOffBtn").style.display = "block";
+    setTimeout(
+      () => {
+        printingSFX.pause();
+        task.remove();
+        document.querySelectorAll(".loading")[number].style.display = "none";
+        $("pleasewait2").style.opacity = "0";
+        taskRunning = false;
+        document.body.style.pointerEvents = "unset";
+        if (document.querySelector("#advertising").children.length == 6) {
+          document.querySelectorAll(".warning")[1].style.display = "none";
+          socket.emit("log", "Finished printing stuff!!!");
+          if (
+            document.querySelectorAll(".warning")[0].style.display == "none" &&
+            document.querySelectorAll(".warning")[1].style.display == "none" &&
+            document.querySelectorAll(".warning")[2].style.display == "none"
+          ) {
+            $("logOffBtn").style.display = "block";
+          }
         }
-      }
-    }, 16680);
+      },
+      printerUpgrade ? 14000 : 16680
+    );
   }
 }
 
@@ -174,24 +221,27 @@ function runMaintenance(task, number) {
     task.style.cursor = "default";
     taskRunning = true;
     document.body.style.pointerEvents = "none";
-    setTimeout(() => {
-      task.remove();
-      document.querySelectorAll(".loading")[number].style.display = "none";
-      $("pleasewait3").style.opacity = "0";
-      taskRunning = false;
-      document.body.style.pointerEvents = "unset";
-      if (document.querySelector("#maintenance").children.length == 6) {
-        document.querySelectorAll(".warning")[2].style.display = "none";
-        socket.emit("log", "Finished maintenance!!!");
-        if (
-          document.querySelectorAll(".warning")[0].style.display == "none" &&
-          document.querySelectorAll(".warning")[1].style.display == "none" &&
-          document.querySelectorAll(".warning")[2].style.display == "none"
-        ) {
-          $("logOffBtn").style.display = "block";
+    setTimeout(
+      () => {
+        task.remove();
+        document.querySelectorAll(".loading")[number].style.display = "none";
+        $("pleasewait3").style.opacity = "0";
+        taskRunning = false;
+        document.body.style.pointerEvents = "unset";
+        if (document.querySelector("#maintenance").children.length == 6) {
+          document.querySelectorAll(".warning")[2].style.display = "none";
+          socket.emit("log", "Finished maintenance!!!");
+          if (
+            document.querySelectorAll(".warning")[0].style.display == "none" &&
+            document.querySelectorAll(".warning")[1].style.display == "none" &&
+            document.querySelectorAll(".warning")[2].style.display == "none"
+          ) {
+            $("logOffBtn").style.display = "block";
+          }
         }
-      }
-    }, 12520);
+      },
+      handymanUpgrade ? 10000 : 12520
+    );
   }
 }
 
@@ -235,7 +285,7 @@ function runEquipment(task, number) {
         document.querySelectorAll("p").forEach((x) => {
           x.innerHTML = "$" + money;
         });
-        socket.emit("log", "<span>HANDYMAN UPGRADE!!! (9500)</span>");
+        socket.emit("log", "<span>HANDYMAN UPGRADE!!! ($900)</span>");
       }
     }, 100);
   }
@@ -285,3 +335,28 @@ function activateSilentVentilation(elem) {
   $("Bar").style.left = "472px";
   $("Bar").style.display = "block";
 }
+var loggedOff = false;
+function logOff() {
+  $("blackout").style.display = "block";
+  monitorNoise.pause();
+  socket.emit("log", "<span style='color: yellow'>!NIGHT END!</span>");
+  loggedOff = true;
+}
+
+var monitorOn = true;
+var monitorNoise = new Audio("assets/audio/computer2.wav");
+monitorNoise.loop = true;
+
+document.addEventListener("keydown", (event) => {
+  if (event.key == "z" && !loggedOff && !taskRunning) {
+    if (monitorOn) {
+      monitorNoise.pause();
+      new Audio("assets/audio/powerdown5.mp3").play();
+      $("blackout").style.display = "block";
+    } else {
+      monitorNoise.play();
+      $("blackout").style.display = "none";
+    }
+    monitorOn = !monitorOn;
+  }
+});
