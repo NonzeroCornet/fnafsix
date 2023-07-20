@@ -346,6 +346,23 @@ function logOff() {
 var monitorOn = true;
 var monitorNoise = new Audio("assets/audio/computer2.wav");
 monitorNoise.loop = true;
+let code = false;
+
+let konami = [
+  "ArrowUp",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowLeft",
+  "ArrowRight",
+  "b",
+  "a",
+  "Enter",
+];
+
+let codeProgression = 0;
 
 document.addEventListener("keydown", (event) => {
   if (event.key == "z" && !loggedOff && !taskRunning) {
@@ -358,5 +375,17 @@ document.addEventListener("keydown", (event) => {
       $("blackout").style.display = "none";
     }
     monitorOn = !monitorOn;
+  }
+  if (!code) {
+    if (event.key == konami[codeProgression]) {
+      codeProgression++;
+      if (codeProgression > 10) {
+        code = true;
+        monitorNoise.src = "assets/audio/DOOOM.mp3";
+        monitorNoise.play();
+      }
+    } else {
+      codeProgression = 0;
+    }
   }
 });
