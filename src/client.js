@@ -11,7 +11,7 @@ var handymanUpgrade = false;
 
 var money = 0;
 
-var bloopity = new Audio("/assets/Audio/bing5.wav");
+var bloopity = new Audio("/assets/audio/bing5.wav");
 var monitorNoise = new Audio("assets/audio/computer2.wav");
 monitorNoise.loop = true;
 
@@ -146,7 +146,7 @@ function switchMode(btn, mode) {
 }
 
 var taskRunning = false;
-let taskSFX = new Audio("/assets/Audio/orderitem.mp3");
+let taskSFX = new Audio("/assets/audio/orderitem.mp3");
 taskSFX.loop = true;
 function runTask(task, number) {
   if (!taskRunning) {
@@ -187,8 +187,8 @@ function runAdvertising(task, number) {
   if (!taskRunning) {
     let printingSFX = new Audio(
       printerUpgrade
-        ? "/assets/Audio/laserprinter3.mp3"
-        : "/assets/Audio/printing.mp3"
+        ? "/assets/audio/laserprinter3.mp3"
+        : "/assets/audio/printing.mp3"
     );
     printingSFX.play();
     document.querySelectorAll(".loading")[number].style.display = "block";
