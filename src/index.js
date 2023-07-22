@@ -56,6 +56,10 @@ io.on("connection", (socket) => {
   socket.on("reloadR", () => {
     io.sockets.emit("reloadC");
   });
+
+  socket.on("murderR", () => {
+    io.sockets.emit("murderC");
+  });
 });
 http.listen(8080);
 const createWindow = () => {

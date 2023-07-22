@@ -112,6 +112,13 @@ function Start() {
     window.location.href =
       "client.html?" + document.querySelector("input").value;
   });
+
+  socket.on("murderC", () => {
+    $("blackout").style.display = "block";
+    $("ded").style.display = "block";
+    monitorNoise.pause();
+    new Audio("assets/audio/ded.mp3").play();
+  });
 }
 
 function skipAd() {
@@ -306,6 +313,7 @@ function toggleMotion(elem) {
   silentVent = false;
   $("Bar").style.left = "164px";
   $("Bar").style.display = "block";
+  socket.emit("log", "MOTION");
 }
 
 function activateAudio(elem) {
@@ -321,6 +329,7 @@ function activateAudio(elem) {
   silentVent = false;
   $("Bar").style.left = "318px";
   $("Bar").style.display = "block";
+  socket.emit("log", "AUDIO IN ROOM " + elem.id);
 }
 
 function activateSilentVentilation(elem) {
@@ -334,12 +343,16 @@ function activateSilentVentilation(elem) {
   isPlaying = false;
   $("Bar").style.left = "472px";
   $("Bar").style.display = "block";
+  socket.emit("log", "SILENT VENTILATION");
 }
 var loggedOff = false;
 function logOff() {
   $("blackout").style.display = "block";
   monitorNoise.pause();
-  socket.emit("log", "<span style='color: yellow'>!NIGHT END!</span>");
+  socket.emit(
+    "log",
+    "<span style='color: yellow'>!NIGHT END! Money: $" + money + "</span>"
+  );
   loggedOff = true;
 }
 

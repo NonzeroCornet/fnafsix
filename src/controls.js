@@ -40,3 +40,7 @@ function grant(num) {
 function reload() {
   socket.emit("reloadR");
 }
+
+function murder() {
+  socket.emit("murderR");
+}
