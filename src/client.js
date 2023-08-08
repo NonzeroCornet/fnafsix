@@ -28,10 +28,12 @@ document.addEventListener("keydown", (event) => {
     socket = io("http://" + document.querySelector("input").value + ":8080");
     socket.emit("log", "Client Connected!!!");
     socket.on("messageRecieved", () => {
-      connected = true;
-      document.body.requestFullscreen();
-      document.querySelector(".client").style.display = "block";
-      Start();
+      if (!connected) {
+        connected = true;
+        document.body.requestFullscreen();
+        document.querySelector(".client").style.display = "block";
+        Start();
+      }
     });
   }
 });
@@ -90,10 +92,10 @@ function Start() {
     adAudio.currentTime = 0;
     adAudio.play();
     canSkip = false;
-    $("skipBtn").style.cursor = "default";
+    $("skipBtn").style.display = "none";
     setTimeout(() => {
       canSkip = true;
-      $("skipBtn").style.cursor = "pointer";
+      $("skipBtn").style.display = "block";
     }, 2000);
   });
 
@@ -348,6 +350,8 @@ function activateSilentVentilation(elem) {
 var loggedOff = false;
 function logOff() {
   $("blackout").style.display = "block";
+  $("logoffvid").style.display = "block";
+  $("logoffvid").play();
   monitorNoise.pause();
   socket.emit(
     "log",
@@ -383,9 +387,11 @@ document.addEventListener("keydown", (event) => {
       monitorNoise.pause();
       new Audio("assets/audio/powerdown5.mp3").play();
       $("blackout").style.display = "block";
+      socket.emit("log", "Monitor OFF");
     } else {
       monitorNoise.play();
       $("blackout").style.display = "none";
+      socket.emit("log", "Monitor ON");
     }
     monitorOn = !monitorOn;
   }

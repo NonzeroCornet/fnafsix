@@ -5,7 +5,10 @@ document.getElementById("ip").innerHTML = new URL(
 ).searchParams.get("ip");
 
 document.addEventListener("keydown", (event) => {
-  if (event.key == "Enter") {
+  if (
+    event.key == "Enter" &&
+    document.querySelector("div").style.display != "block"
+  ) {
     document.location = "clientparent.html";
   } else if (event.key == "f") {
     document.body.requestFullscreen();
@@ -19,6 +22,8 @@ document.addEventListener("keydown", (event) => {
 socket.on("logControls", (message) => {
   document.querySelector("div").style.display = "block";
   document.querySelector("div").innerHTML += `<br><h2>${message}</h2>`;
+  document.querySelector("div").scrollTop =
+    document.querySelector("div").scrollHeight;
 });
 
 function moneyUpdate() {

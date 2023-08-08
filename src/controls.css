@@ -27,6 +27,7 @@ div {
   color: green;
   font-family: Arial;
   text-align: right;
+  scroll-behavior: smooth;
 }
 
 h2 {
