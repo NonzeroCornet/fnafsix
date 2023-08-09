@@ -24,6 +24,7 @@ function getLocalIPAddress() {
 }
 exApp.use(cors());
 exApp.use(express.static(__dirname + "/"));
+exApp;
 exApp.get("/", (req, res) => {
   res.send(
     `<script>window.location.href = "/controls.html?ip=${getLocalIPAddress()}"</script>`
@@ -62,6 +63,7 @@ io.on("connection", (socket) => {
   });
 });
 http.listen(8080);
+http.once("error", () => {});
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 600,
